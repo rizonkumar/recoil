@@ -19,5 +19,12 @@ export const messagingAtom = atom({
 
 // Selector is dervied from other atoms
 export const totalNotificationCount = selector({
-
+    key: "totalNotificationSelector",
+    value: ({ get }) => {
+        const networkAtomCount = get(networkAtom);
+        const jobAtomCount = get(jobAtom);
+        const notificationAtomCount = get(notificationAtom);
+        const messagingAtomCount = get(messagingAtom);
+        return networkAtomCount + jobAtomCount + notificationAtomCount + messagingAtomCount;
+    }
 })
