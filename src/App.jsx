@@ -1,5 +1,5 @@
 import { RecoilRoot, useRecoilValue } from "recoil";
-import { jobAtom, messagingAtom, networkAtom, notificationAtom } from "./atoms";
+import { jobAtom, messagingAtom, networkAtom, notificationAtom, totalNotificationSelector } from "./atoms";
 import { useMemo } from "react";
 
 function App() {
@@ -21,7 +21,7 @@ function MainApp() {
     return  networkNotificationCount + jobAtomCount + notificationAtomCount + messagingAtomCount;
   }, [ networkNotificationCount, jobAtomCount, notificationAtomCount, messagingAtomCount])
 
-  console.log(networkNotificationCount);
+  const totalNotificationCountSelector = useRecoilValue(totalNotificationSelector)
   return (
     <>
       <button>Home</button>
@@ -32,7 +32,7 @@ function MainApp() {
       <button>Jobs({jobAtomCount})</button>
       <button>Messaging({notificationAtomCount})</button>
       <button>Notification({messagingAtomCount})</button>
-      <button>Me {totalNotificationCount}</button>
+      <button>Me {totalNotificationCountSelector}</button>
 
     </>
   );
